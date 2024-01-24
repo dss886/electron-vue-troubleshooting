@@ -1,8 +1,10 @@
 import {app, BrowserWindow, ipcMain, session} from 'electron';
 import {join} from 'path';
 
+let win: BrowserWindow | null = null;
+
 function createWindow () {
-  const mainWindow = new BrowserWindow({
+  win = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
@@ -14,10 +16,10 @@ function createWindow () {
 
   if (process.env.NODE_ENV === 'development') {
     const rendererPort = process.argv[2];
-    mainWindow.loadURL(`http://localhost:${rendererPort}`);
+    win.loadURL(`http://localhost:${rendererPort}`);
   }
   else {
-    mainWindow.loadFile(join(app.getAppPath(), 'renderer', 'index.html'));
+    win.loadFile(join(app.getAppPath(), 'renderer', 'index.html'));
   }
 }
 
@@ -40,6 +42,7 @@ app.whenReady().then(() => {
       createWindow();
     }
   });
+  win?.webContents.openDevTools();
 });
 
 app.on('window-all-closed', function () {
