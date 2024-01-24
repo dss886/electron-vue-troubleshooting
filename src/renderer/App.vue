@@ -12,11 +12,11 @@ interface Item {
 
 const itemList = ref<Item[]>([
     {
-        icon: 'vite.svg',
+        icon: '/vite.svg',
         title: 'Vite logo'
     },
     {
-        icon: 'vue.svg',
+        icon: '/vue.svg',
         title: 'Vue logo'
     },
 ]);

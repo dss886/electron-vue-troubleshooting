@@ -2,7 +2,7 @@
     <div class="test-item-wrapper">
         <img 
             v-if="icon !== ''" 
-            :src="'/' + icon"
+            :src="icon"
             class="icon"
         >
     </div>
